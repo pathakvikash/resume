@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <title>Vikash Pathak - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <section
+        class="hero flex flex-col items-center justify-center h-screen bg-gradient-to-r from-black to-blue-600 text-white">
+        <h1 class="text-5xl font-bold text-white mb-8">
+            Vikash Pathak
+        </h1>
+        <p class="text-2xl text-black-200 mb-4">
+            Web Developer & Engineer
+        </p>
+        <p class="text-lg text-black-300 mb-8">
+            Experience in web development and blockchain development
+        </p>
+        <a href="#about-me" class="btn btn-primary">Get in touch</a>
+    </section>
+
+    <section class="container mx-auto my-12 px-8">
+        <div class="comp-card  flex flex-col md:flex-row justify-between">
+            <div class="education my-auto">
+                <h2 class="text-3xl font-bold mb-9 ">Education</h2>
+            </div>
+            <div class="links my-auto">
+            </div>
+        </div>
+    </section>
+
+    <section id="about-me" class="bg-gray-100 py-16">
+        <div class="container mx-auto px-4 sm:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                About Me
+            </h2>
+            <p class="text-lg text-gray-600 mb-8">
+                Skilled software engineer with 2+ years of experience in full-stack development. Proven ability to
+                deliver impactful solutions using JavaScript, Node.js, TypeScript, and Solidity. Expertise in Next.js
+                front-end and UI development, with a keen understanding of responsive design and software engineering.
+            </p>
+            <section class="about py-16" id="about">
+                <div class="container mx-auto">
+                    <div class="about-content flex flex-col md:flex-row">
+                        <div class="column left w-full md:w-1/2">
+                            <img src="https://ca.slack-edge.com/T044JMLKQ4V-U04R4QMRVA5-cfd6e4624667-512"
+                                alt="Profile Image 626x626" class="w-1/2">
+                        </div>
+                        <div class="column right w-full md:w-1/2 mt-8 md:mt-0">
+                            <div class="text text-xl">I'm Vikash and I'm a <span class="typing-2"></span></div>
+                            <p class="mt-4">Seeking an entry-level opportunity with an esteemed organization where I can
+                                utilize my skills & enhance learning in the field of work. Capable of mastering new
+                                technologies.</p>
+                            <br>
+                            <div class="text text-xl">Why Work With Me</div>
+                            <p class="mt-4">I'm a great communicator & love to invest the necessary time to understand
+                                the customer's problem very well.</p>
+                            <a href="#link" target="blank" class="mt-4 text-blue-500">Download CV</a>
+                        </div>
+                    </div>
+                </div>
+                <!--Form-->
+            </section>
+            <div class="flex flex-wrap justify-between">
+                <section class="container mx-auto my-6">
+                    <h2 class="text-3xl font-bold mb-8">Skills</h2>
+
+                    <!-- Skills Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+                        <!-- Skills items will be dynamically generated here -->
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="bg-white py-16">
+        <div class="container mx-auto px-4 sm:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                Experience
+            </h2>
+            <div id="experience-timeline" class="timeline">
+                <!-- Experience items will be dynamically generated here -->
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="bg-gray-100 py-16">
+        <div class="container mx-auto px-4 sm:px-8 flex flex-col justify-between">
+            <h2 class="text-3xl mb-8 font-bold text-gray-800 mb-4">
+                Projects
+            </h2>
+            <div id="project-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Project cards will be dynamically generated here -->
+            </div>
+        </div>
+    </section>
+
+    <section id="activity" class="bg-white py-16 mx-auto my-9">
+        <div class="container mx-auto px-4 sm:px-8 flex flex-col justify-between">
+            <h2 class="text-3xl font-bold mb-8">Activities</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Example activity -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="text-gray-600">"Participated in SIH Hackathon - 2022"</p>
+                    <p class="text-gray-800 font-semibold mt-4">Team Leader</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="text-gray-600">"Tezos Club - 2023"</p>
+                    <p class="text-gray-800 font-semibold mt-4">
+                        <a href="https://www.instagram.com/enigma.tezos.club/" target="_blank">
+                            Tech-lead
+                        </a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses" class="bg-gray-100 py-16 mx-auto my-6">
+        <div class="container mx-auto px-4 sm:px-8 flex flex-col justify-between">
+
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold mb-8">Coursework</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 px-4 lg:grid-cols-3 gap-8" id="courses-container">
+                    <!-- Content will be dynamically generated here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact" class="bg-gray-800 text-white py-16">
+        <div class="container mx-auto px-4 sm:px-8">
+            <a href="/components/contact.html" class="text-3xl font-bold  mb-4">
+                Contact Me
+            </a>
+            <div class="contact-content flex flex-col md:flex-row">
+                <div class="column left w-full md:w-1/2">
+                    <p class="mt-4">Feel free to get in touch with me. I am always open to discussing new projects,
+                        creative ideas or opportunities to be a part of your visions. Email me with any questions or
+                        inquiries. I'll be happy to answer your questions and set up a meeting with you.</p>
+                    <div class="icons mt-4">
+                        <div class="row">
+                            <i class="fa-solid fa-user-large"></i>
+                            <div class="info">
+                                <div class="head text-xl font-bold">Name</div>
+                                <div class="sub-title"><a href="#" class="text"> Vikash Pathak</a></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div class="info">
+                                <div class="head text-xl font-bold"> Address</div>
+                                <div class="sub-title"> Patna - Bihar, 800002, India</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <i class="fa-solid fa-envelope"></i>
+                            <div class="info">
+                                <div class="head text-xl font-bold">Email</div>
+                                <div class="sub-title"><a href="mailto:pathakvikash821@gmail.com" class="text-">
+                                        pathakvikash821@gmail.com</a></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <i class="bi bi-translate"></i>
+                            <div class="info">
+                                <div class="head text-xl font-bold">Language Known</div>
+                                <div class="sub-title">Hindi, English</div>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- Social -->
+                        <div class="social-menu">
+                            <ul>
+                                <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                                <li><a href="#" title="Get Educate with Us"><i
+                                            class="fa-solid fa-graduation-cap"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reach -->
+                <div class="column right w-full md:w-1/2 mt-8 md:mt-0">
+                    <div class="text text-xl">Message me</div>
+                    <form action="#" class="mt-4 text-black">
+                        <div class="fields">
+                            <div class="field name">
+                                <input type="text" placeholder="Your Name" required
+                                    class="w-full border border-gray-400 p-2 rounded">
+                            </div>
+                            <div class="field email mt-4">
+                                <input type="email" placeholder="Your Email" required
+                                    class="w-full border border-gray-400 p-2 rounded">
+                            </div>
+                        </div>
+                        <div class="field mt-4">
+                            <input type="text" placeholder="Subject" required
+                                class="w-full border border-gray-400 p-2 rounded">
+                        </div>
+                        <div class="field textarea mt-4">
+                            <textarea cols="30" rows="10" placeholder="Message.." required
+                                class="w-full border border-gray-400 p-2 rounded"></textarea>
+                        </div>
+                        <div class="button-area mt-4">
+                            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Send message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-4 border-t border-gray-700">
+        <div class="container mx-auto px-4 sm:px-8">
+            <p class="text-center">
+                © 2024 Vikash Pathak. All rights reserved.
+            </p>
+        </div>
+    </footer>
+</body>
+<script src="script.js"></script>
+
+</html>
