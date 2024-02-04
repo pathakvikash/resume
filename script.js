@@ -21,19 +21,23 @@ document.addEventListener('DOMContentLoaded', function () {
       description.textContent = project.description;
 
       const projectLink = document.createElement('div');
-      projectLink.className = 'mt-4';
+      projectLink.className = 'mt-4 flex justify-between project-repo-link';
       const link = document.createElement('a');
+      const repoLink = document.createElement('a');
       link.href = project.link;
+      repoLink.href = project.gitrepo;
       link.className = 'text-blue-600 hover:underline';
-      link.textContent = 'View Project';
+      repoLink.className = 'text-blue-600 hover:underline';
 
+      link.textContent = 'View Project';
+      repoLink.textContent = 'View Repo';
       projectLink.appendChild(link);
+      projectLink.appendChild(repoLink);
 
       projectCard.appendChild(title);
       projectCard.appendChild(image);
       projectCard.appendChild(description);
       projectCard.appendChild(projectLink);
-
       projectContainer.appendChild(projectCard);
     });
   }
@@ -113,13 +117,16 @@ document.addEventListener('DOMContentLoaded', function () {
       description:
         'Implemented a comprehensive full-stack shopping service using React, Redux, Express, and MongoDB.',
       link: 'https://a-zone.vercel.app/',
+      gitrepo: 'https://github.com/pathakvikash/AZone',
     },
     {
       title: 'Medium clone',
       image:
         'https://img.freepik.com/free-vector/overlapping-forms-wallpaper_23-2148650920.jpg',
-      description: 'Blogging platform.',
+      description:
+        'Cloned of Blogging platform to match pixel perfect design and styling of Medium.',
       link: 'https://medium-clone-virid-theta.vercel.app/',
+      gitrepo: 'https://github.com/pathakvikash/medium-clone',
     },
     {
       title: 'API Service to Fetch Github Users',
@@ -128,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
       description:
         'Developed an API service to fetch users, leveraging the GitHub platform API.',
       link: 'https://cithub.vercel.app/',
+      gitrepo: 'https://github.com/chotapathak/cithub',
     },
     // Add more project data as needed
   ];
@@ -305,7 +313,7 @@ document.addEventListener('DOMContentLoaded', function () {
       courseItem.className = 'mb-6';
 
       const courseTitle = document.createElement('h3');
-      courseTitle.className = 'text-xl font-semibold';
+      courseTitle.className = 'text-xl font-semibold p-3';
       courseTitle.textContent = courseCategory.title;
 
       const courseList = document.createElement('ul');

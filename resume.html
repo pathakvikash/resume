@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/kute.js@2.1.2/dist/kute.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@100;400;900&display=swap" rel="stylesheet" />
 
     <title>Vikash Pathak - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
@@ -12,22 +16,25 @@
 
 <body>
     <section
-        class="hero flex flex-col items-center justify-center h-screen bg-gradient-to-r from-black to-blue-600 text-white">
-        <h1 class="text-5xl font-bold text-white mb-8">
-            Vikash Pathak
-        </h1>
-        <p class="text-2xl text-black-200 mb-4">
-            Web Developer & Engineer
-        </p>
-        <p class="text-lg text-black-300 mb-8">
-            Experience in web development and blockchain development
-        </p>
-        <a href="#about-me" class="btn btn-primary">Get in touch</a>
+        class="relative h-screen layer1 spacer w-full justify-around items-center flex bg-gradient-to-r from-black to-blue-600 text-white">
+
+        <div class="text-center">
+            <h1 class="text-5xl font-bold mb-8">
+                Vikash Pathak
+            </h1>
+            <p class="text-2xl mb-4">
+                Web Developer & Engineer
+            </p>
+            <p class="text-lg mb-8">
+                Experience in web development and blockchain development
+            </p>
+            <a href="#about-me" class="btn connect-btn btn-primary">Connect</a>
+        </div>
     </section>
 
-    <section class="container mx-auto my-12 px-8">
-        <div class="comp-card  flex flex-col md:flex-row justify-between">
-            <div class="education my-auto">
+    <section class="container text-white mx-auto my-12 px-8">
+        <div class="comp-card flex flex-col md:flex-row justify-between">
+            <div class="education  my-auto">
                 <h2 class="text-3xl font-bold mb-9 ">Education</h2>
             </div>
             <div class="links my-auto">
@@ -35,7 +42,7 @@
         </div>
     </section>
 
-    <section id="about-me" class="bg-gray-100 py-16">
+    <section id="about-me" class="py-16 bg-gray-200">
         <div class="container mx-auto px-4 sm:px-8">
             <h2 class="text-3xl font-bold text-gray-800 mb-4">
                 About Me
@@ -49,11 +56,30 @@
                 <div class="container mx-auto">
                     <div class="about-content flex flex-col md:flex-row">
                         <div class="column left w-full md:w-1/2">
-                            <img src="https://ca.slack-edge.com/T044JMLKQ4V-U04R4QMRVA5-cfd6e4624667-512"
-                                alt="Profile Image 626x626" class="w-1/2">
+                            <!-- <img src="https://ca.slack-edge.com/T044JMLKQ4V-U04R4QMRVA5-cfd6e4624667-512"
+                                alt="Profile Image 626x626" class="w-1/2"> -->
+                            <div class="blob-content sm:block hidden xl:block">
+
+                                <svg class="blob-motion" id="visual" viewBox="30 60 960 540" width="360" height="540"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    version="1.1">
+                                    <g transform="translate(450.7256843113689 283.4942824330989)">
+                                        <path id="blob1"
+                                            d="M148.7 -134.9C193.7 -103.7 231.9 -51.9 232.4 0.6C233 53 196.1 106.1 151.1 128.6C106.1 151.1 53 143 -4.4 147.4C-61.8 151.8 -123.5 168.5 -151.2 146C-178.8 123.5 -172.4 61.8 -172.8 -0.4C-173.1 -62.5 -180.3 -124.9 -152.6 -156.1C-124.9 -187.3 -62.5 -187.1 -5.3 -181.8C51.9 -176.5 103.7 -166 148.7 -134.9"
+                                            fill="#171515"></path>
+                                    </g>
+                                    <g transform="translate(509.54377535978017 281.49390864595887)"
+                                        style="visibility: hidden">
+                                        <path id="blob2"
+                                            d="M115.4 -137.9C137.9 -92.9 136.4 -46.4 133.6 -2.8C130.8 40.8 126.6 81.6 104.1 118.4C81.6 155.2 40.8 188.1 -8.4 196.5C-57.5 204.8 -115 188.7 -151 151.9C-187 115 -201.5 57.5 -190.8 10.7C-180.1 -36.1 -144.1 -72.1 -108.1 -117.1C-72.1 -162.1 -36.1 -216.1 5.2 -221.2C46.4 -226.4 92.9 -182.9 115.4 -137.9"
+                                            fill="#BB004B"></path>
+                                    </g>
+                                </svg>
+                            </div>
                         </div>
                         <div class="column right w-full md:w-1/2 mt-8 md:mt-0">
-                            <div class="text text-xl">I'm Vikash and I'm a <span class="typing-2"></span></div>
+                            <div class="text text-xl">I'm Vikash and I'm a <span class="typing-2">Engineer</span></div>
+
                             <p class="mt-4">Seeking an entry-level opportunity with an esteemed organization where I can
                                 utilize my skills & enhance learning in the field of work. Capable of mastering new
                                 technologies.</p>
@@ -61,11 +87,13 @@
                             <div class="text text-xl">Why Work With Me</div>
                             <p class="mt-4">I'm a great communicator & love to invest the necessary time to understand
                                 the customer's problem very well.</p>
-                            <a href="#link" target="blank" class="mt-4 text-blue-500">Download CV</a>
+                            <a href="./compo/VP.pdf" target="blank" download="Vikash Pathak - VP resume"
+                                class="mt-4 text-blue-500">Download
+                                CV</a>
                         </div>
                     </div>
                 </div>
-                <!--Form-->
+
             </section>
             <div class="flex flex-wrap justify-between">
                 <section class="container mx-auto my-6">
@@ -103,7 +131,7 @@
         </div>
     </section>
 
-    <section id="activity" class="bg-white py-16 mx-auto my-9">
+    <section id="activity" class="bg-white py-16 mx-auto">
         <div class="container mx-auto px-4 sm:px-8 flex flex-col justify-between">
             <h2 class="text-3xl font-bold mb-8">Activities</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -125,7 +153,7 @@
         </div>
     </section>
 
-    <section id="courses" class="bg-gray-100 py-16 mx-auto my-6">
+    <section id="courses" class="bg-gray-100 py-16 mx-auto ">
         <div class="container mx-auto px-4 sm:px-8 flex flex-col justify-between">
 
             <div class="container mx-auto">
@@ -139,17 +167,18 @@
     </section>
 
 
-    <section id="contact" class="bg-gray-800 text-white py-16">
+    <section id="contact" class="layer2 spacer text-white py-16">
         <div class="container mx-auto px-4 sm:px-8">
             <a href="/components/contact.html" class="text-3xl font-bold  mb-4">
                 Contact Me
             </a>
             <div class="contact-content flex flex-col md:flex-row">
                 <div class="column left w-full md:w-1/2">
-                    <p class="mt-4">Feel free to get in touch with me. I am always open to discussing new projects,
+                    <p class="mt-4 px-3 ">Feel free to get in touch with me. I am always open to discussing new
+                        projects,
                         creative ideas or opportunities to be a part of your visions. Email me with any questions or
                         inquiries. I'll be happy to answer your questions and set up a meeting with you.</p>
-                    <div class="icons mt-4">
+                    <div class="icons mt-4 px-3">
                         <div class="row">
                             <i class="fa-solid fa-user-large"></i>
                             <div class="info">
@@ -197,24 +226,24 @@
                 <!-- Reach -->
                 <div class="column right w-full md:w-1/2 mt-8 md:mt-0">
                     <div class="text text-xl">Message me</div>
-                    <form action="#" class="mt-4 text-black">
+                    <form action="#" class="mt-4 text-black ">
                         <div class="fields">
                             <div class="field name">
                                 <input type="text" placeholder="Your Name" required
-                                    class="w-full border border-gray-400 p-2 rounded">
+                                    class="w-full inputbg border border-gray-400 p-2 rounded">
                             </div>
                             <div class="field email mt-4">
                                 <input type="email" placeholder="Your Email" required
-                                    class="w-full border border-gray-400 p-2 rounded">
+                                    class="w-full inputbg border border-gray-400 p-2 rounded">
                             </div>
                         </div>
                         <div class="field mt-4">
                             <input type="text" placeholder="Subject" required
-                                class="w-full border border-gray-400 p-2 rounded">
+                                class="w-full inputbg inputbg border border-gray-400 p-2 rounded">
                         </div>
                         <div class="field textarea mt-4">
                             <textarea cols="30" rows="10" placeholder="Message.." required
-                                class="w-full border border-gray-400 p-2 rounded"></textarea>
+                                class="w-full blobs spacer border border-gray-400 p-2 rounded"></textarea>
                         </div>
                         <div class="button-area mt-4">
                             <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Send message</button>
@@ -225,7 +254,7 @@
         </div>
     </section>
 
-    <footer class="bg-gray-800 text-white py-4 border-t border-gray-700">
+    <footer class=" bg-gray-800 text-white py-4 border-t border-gray-700">
         <div class="container mx-auto px-4 sm:px-8">
             <p class="text-center">
                 © 2024 Vikash Pathak. All rights reserved.
@@ -234,5 +263,13 @@
     </footer>
 </body>
 <script src="script.js"></script>
+<script>
+    const tween = KUTE.fromTo(
+        '#blob1',
+        { path: '#blob1' },
+        { path: '#blob2' },
+        { repeat: 999, duration: 3000, yoyo: true }
+    ).start();
+</script>
 
 </html>
