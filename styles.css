@@ -1,7 +1,78 @@
 body {
+  font-family: Helvetica, Arial, sans-serif;
   margin: 0;
   background: #202731;
   overflow-x: hidden;
+}
+
+@keyframes load {
+  from {
+    width: 0%;
+  }
+}
+@-webkit-keyframes load {
+  from {
+    width: 0%;
+  }
+}
+@-moz-keyframes load {
+  from {
+    width: 0%;
+  }
+}
+@-o-keyframes load {
+  from {
+    width: 0%;
+  }
+}
+
+.bar {
+  background-color: #12192c;
+  padding: 2px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: white;
+
+  font-weight: 600;
+}
+.bar::before {
+  content: attr(data-skill);
+  background-color: #f3b0ff;
+  display: inline-block;
+  padding: 5px 0 5px 10px;
+  border-radius: inherit;
+  animation: load 2s 0s;
+  -webkit-animation: load 3s 0s;
+  -moz-animation: load 3s 0s;
+  -o-animation: load 3s 0s;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.bar.webdev::before {
+  background-color: #8d3f0a;
+  width: calc(90% - 10px);
+}
+.bar.blockchain::before {
+  background-color: rgba(82, 124, 159, 0.629);
+  width: calc(90% - 10px);
+}
+.bar.ai::before {
+  background-color: rgb(183, 42, 14);
+  width: calc(90% - 10px);
+}
+.bar.finance::before {
+  background-color: rgb(4, 105, 237);
+  width: calc(80% - 10px);
+}
+.bar.security::before {
+  background-color: rgb(39, 37, 36);
+  width: calc(60% - 10px);
+  color: whitesmoke;
+}
+.bar.web3::before {
+  background-color: rgba(24, 45, 77, 0.494);
+  width: calc(70% - 10px);
 }
 
 .blue {
@@ -95,4 +166,28 @@ body {
 
 .connect-btn:hover::before {
   left: 0;
+}
+.social-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: end;
+  position: relative;
+}
+.social-menu a {
+  display: block;
+  padding: 10px;
+  color: #fff;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+/*=============== THEME ===============*/
+.change__theme {
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.change__theme:hover {
 }
