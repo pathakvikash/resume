@@ -129,15 +129,14 @@ document.addEventListener('DOMContentLoaded', function () {
       gitrepo: 'https://github.com/pathakvikash/medium-clone',
     },
     {
-      title: 'API Service to Fetch Github Users',
+      title: 'Graphical User Authenticaiton System',
       image:
         'https://img.freepik.com/free-vector/colorful-abstract-background-theme_23-2148449982.jpg?size=626&ext=jpg&ga=GA1.1.1803636316.1700784000&semt=ais',
       description:
-        'Developed an API service to fetch users, leveraging the GitHub platform API.',
-      link: 'https://cithub.vercel.app/',
-      gitrepo: 'https://github.com/chotapathak/cithub',
-    },
-    // Add more project data as needed
+        'Developed an system authenticate the user using GUI.',
+      link: 'https://gauth-xi.vercel.app/',
+      gitrepo: 'https://github.com/pathakvikash/gauth',
+    }
   ];
 
   // Sample data for experiences
