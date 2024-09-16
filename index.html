@@ -28,7 +28,7 @@
                     Hi,
                     👋 Vikash Pathak
                 </p>
-                <a href="#about" class="text-xl flex justify-end text-gray-400 m-2 gap-1">More About Me </a>
+                <a href="#about" class="text-xl flex justify-end text-gray-400 m-2 gap-1">I build things. </a>
             </div>
         </div>
     </section>
@@ -83,11 +83,14 @@
         <div class="container mx-auto px-4 sm:px-8">
             <h2 class="text-3xl font-bold text-gray-800 mb-4">
                 About Me
+                <input id="question" type="text" placeholder="Ask something">
             </h2>
             <p class="text-2xl text-gray-600 mb-8">
-                Skilled software engineer with 2+ years of experience in full-stack development. Proven ability to
-                deliver impactful solutions using JavaScript, Node.js, TypeScript, and Solidity. Expertise in Next.js
-                front-end and UI development, with a keen understanding of responsive design and software engineering.
+                Hi, I'm Vikash—a passionate software engineer with over 2 years of experience in full-stack development.
+                I specialize in
+                creating efficient, user-friendly applications using JavaScript, Node.js, TypeScript, Solidity, and
+                Next.js. My focus is
+                on delivering scalable, impactful solutions that blend performance with sleek UI/UX design.
             </p>
             <section class="about py-16" id="about">
                 <div class="container mx-auto">
@@ -95,7 +98,8 @@
                         <div class="column left w-full md:w-1/2">
                             <img src="https://ca.slack-edge.com/T044JMLKQ4V-U04R4QMRVA5-cfd6e4624667-512"
                                 alt="Profile Image 626x626" class="w-1/2 block sm:hidden">
-                            <div class="blob-content sm:block hidden xl:block">
+                            <div id="blob-content" class="blob-content sm:block hidden xl:block">
+                                <div id="audio-visualizer"></div>
 
                                 <svg class="blob-motion" id="visual" viewBox="30 60 960 540" width="360" height="540"
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -112,22 +116,24 @@
                                             fill="#BB004B"></path>
                                     </g>
                                 </svg>
+                                <div id="response-container">
+                                </div>
                             </div>
                         </div>
                         <div class="column right w-full md:w-1/2 mt-8 md:mt-0 gap-4">
-                            <div class="text text-xl">I'm Vikash and I'm a <span class="typing-2">Engineer</span>
+                            <div class="text text-xl">Let's Talk
                             </div>
 
-                            <p class="mt-4 ">Seeking an entry-level opportunity with an esteemed
-                                organization
-                                where I can
-                                utilize my skills & enhance learning in the field of work. Capable of mastering new
-                                technologies.</p>
+                            <p class="mt-4 ">I'm always eager to dive into new challenges. If you have a problem to
+                                solve or an idea to bring to life, let's connect!
+                            </p>
                             <br>
-                            <div class="text text-xl">Why Work With Me</div>
-                            <p class="mt-4 mb-4">I'm a great communicator & love to invest the necessary time to
-                                understand
-                                the customer's problem very well.</p>
+                            <div class="text text-xl">Why Choose Me?</div>
+                            <p class="mt-4 mb-4">I'm not just a developer—I'm a problem-solver. With a deep
+                                understanding of modern web technologies and a collaborative
+                                approach, I invest the time to truly grasp the core of your needs and deliver results
+                                that exceed expectations.
+                            </p>
                             <a href="./compo/VP.pdf" target="blank" download="Vikash Pathak - VP resume"
                                 class="text-blue-500 text-xl">Download
                                 CV</a>
@@ -229,11 +235,9 @@
             </a>
             <div class="contact-content flex flex-col md:flex-row">
                 <div class="column left w-full md:w-1/2 h-min">
-                    <p class="mt-9 text-lg px-3 ">I am always open to discussing
-                        new
-                        projects,
-                        creative ideas or opportunities to be a part of your visions. Email me with any questions or
-                        inquiries. I'll be happy to answer your questions and set up a meeting.</p>
+                    <p class="mt-9 text-lg px-3 ">I'm open to discussing new projects, creative ideas, or opportunities.
+                        Feel free to email me with any questions or to
+                        set up a meeting. I’d be happy to chat!</p>
                     <div class="icons mt-4 px-3 flex flex-col gap-4">
                         <div class="row">
                             <i class="fa-solid fa-user-large"></i>
@@ -327,7 +331,8 @@
         </div>
     </footer>
 </body>
-<script src="script.js"></script>
+
+<script src="script.js" type="module"></script>
 <script src="animation.js"></script>
 <script>
     const tween = KUTE.fromTo(

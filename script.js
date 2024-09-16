@@ -1,396 +1,327 @@
+import {
+  projectsData,
+  skillsData,
+  experiencesData,
+  educationData,
+  courseworkData,
+  AboutMe,
+} from './data.js';
+
 document.addEventListener('DOMContentLoaded', function () {
-  // Function to generate project cards dynamically
-  function generateProjectsComponent(projects) {
-    const projectContainer = document.getElementById('project-container');
+  /*=============== UTILITY FUNCTIONS ===============*/
 
-    projects.forEach((project) => {
-      const projectCard = document.createElement('div');
-      projectCard.className = 'bg-white p-6 rounded-lg shadow-md';
-
-      const title = document.createElement('h3');
-      title.className = 'text-xl font-semibold mb-4';
-      title.textContent = project.title;
-
-      const image = document.createElement('img');
-      image.src = project.image;
-      image.alt = 'Project Image';
-      image.className = 'mb-4 rounded-lg';
-
-      const description = document.createElement('p');
-      description.className = 'text-gray-600';
-      description.textContent = project.description;
-
-      const projectLink = document.createElement('div');
-      projectLink.className = 'mt-4 flex justify-between project-repo-link';
-      const link = document.createElement('a');
-      const repoLink = document.createElement('a');
-      link.href = project.link;
-      repoLink.href = project.gitrepo;
-      link.className = 'text-blue-600 hover:underline';
-      repoLink.className = 'text-blue-600 hover:underline';
-
-      link.textContent = 'View Project';
-      repoLink.textContent = 'View Repo';
-      projectLink.appendChild(link);
-      projectLink.appendChild(repoLink);
-
-      projectCard.appendChild(title);
-      projectCard.appendChild(image);
-      projectCard.appendChild(description);
-      projectCard.appendChild(projectLink);
-      projectContainer.appendChild(projectCard);
-    });
+  function createElement(tag, className, content = '') {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (content) element.textContent = content;
+    return element;
   }
 
-  // Function to generate experience timeline dynamically
-  function generateExperienceTimeline(experiences) {
-    const timelineContainer = document.getElementById('experience-timeline');
-
-    experiences.forEach((experience, index) => {
-      const timelineItem = document.createElement('div');
-      timelineItem.className = 'timeline-item flex flex-col md:flex-row mb-8';
-
-      const timelineDot = document.createElement('div');
-      timelineDot.className = 'timeline-dot flex items-center justify-center';
-      timelineDot.innerHTML = `<i class="fas fa-circle"></i>`;
-
-      const timelineContent = document.createElement('div');
-      timelineContent.className = 'timeline-content';
-
-      const title = document.createElement('h3');
-      title.className = 'timeline-title text-xl font-semibold';
-      title.textContent = experience.title;
-
-      const date = document.createElement('p');
-      date.className = 'text-gray-600';
-      date.textContent = experience.date;
-
-      const descriptionList = document.createElement('ul');
-      descriptionList.className = 'list-disc list-inside';
-
-      experience.description.forEach((item) => {
-        const listItem = document.createElement('li');
-        listItem.textContent = item;
-        descriptionList.appendChild(listItem);
-      });
-
-      timelineContent.appendChild(title);
-      timelineContent.appendChild(date);
-      timelineContent.appendChild(descriptionList);
-
-      timelineItem.appendChild(timelineDot);
-      timelineItem.appendChild(timelineContent);
-
-      timelineContainer.appendChild(timelineItem);
-    });
+  function appendChildren(parent, ...children) {
+    children.forEach((child) => parent.appendChild(child));
   }
 
-  // Function to generate skills grid dynamically
-  function generateSkillsGrid(skills) {
-    const skillsGrid = document.querySelector('.grid');
-
-    skills.forEach((skillCategory) => {
-      const skillItem = document.createElement('div');
-      skillItem.className = 'mb-6';
-
-      const skillTitle = document.createElement('h3');
-      skillTitle.className = 'text-xl font-semibold';
-      skillTitle.textContent = skillCategory.title;
-
-      const skillDescription = document.createElement('p');
-      skillDescription.className = 'text-gray-600';
-      skillDescription.textContent = skillCategory.description;
-
-      skillItem.appendChild(skillTitle);
-      skillItem.appendChild(skillDescription);
-
-      skillsGrid.appendChild(skillItem);
-    });
+  function createList(items, className = '') {
+    const ul = createElement('ul', className);
+    items.forEach((item) => ul.appendChild(createElement('li', '', item)));
+    return ul;
   }
 
-  // Sample data for projects
-  const projectsData = [
-    {
-      title: 'Full-Stack Shopping Service',
-      image:
-        'https://media.istockphoto.com/id/1597475039/photo/abstract-colorful-glass-background.webp?b=1&s=170667a&w=0&k=20&c=G6-on4l4zg7I-HIDJrVS5vSYm-laN6BEkiaaKn8P0LU=',
-      description:
-        'Implemented a comprehensive full-stack shopping service using React, Redux, Express, and MongoDB.',
-      link: 'https://a-zone.vercel.app/',
-      gitrepo: 'https://github.com/pathakvikash/AZone',
-    },
-    {
-      title: 'Medium clone',
-      image:
-        'https://img.freepik.com/free-vector/overlapping-forms-wallpaper_23-2148650920.jpg',
-      description:
-        'Cloned of Blogging platform to match pixel perfect design and styling of Medium.',
-      link: 'https://medium-clone-virid-theta.vercel.app/',
-      gitrepo: 'https://github.com/pathakvikash/medium-clone',
-    },
-    {
-      title: 'Graphical User Authenticaiton System',
-      image:
-        'https://img.freepik.com/free-vector/colorful-abstract-background-theme_23-2148449982.jpg?size=626&ext=jpg&ga=GA1.1.1803636316.1700784000&semt=ais',
-      description:
-        'Developed an system authenticate the user using GUI.',
-      link: 'https://gauth-xi.vercel.app/',
-      gitrepo: 'https://github.com/pathakvikash/gauth',
+  function createLink(href, className, text) {
+    const link = createElement('a', className, text);
+    link.href = href;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    return link;
+  }
+
+  /*=============== COMPONENT HELPERS ===============*/
+
+  function createProjectCard(project) {
+    const projectCard = createElement(
+      'div',
+      'bg-white p-6 rounded-lg shadow-md'
+    );
+    const title = createElement(
+      'h3',
+      'text-xl font-semibold mb-4',
+      project.title
+    );
+    const image = createElement('img', 'mb-4 rounded-lg');
+    image.src = project.image;
+    image.alt = 'Project Image';
+    const description = createElement(
+      'p',
+      'text-gray-600',
+      project.description
+    );
+    const projectLink = createElement(
+      'div',
+      'mt-4 flex justify-between project-repo-link'
+    );
+
+    appendChildren(
+      projectLink,
+      createLink(project.link, 'text-blue-600 hover:underline', 'View Project'),
+      createLink(project.gitrepo, 'text-blue-600 hover:underline', 'View Repo')
+    );
+
+    appendChildren(projectCard, title, image, description, projectLink);
+    return projectCard;
+  }
+
+  function createTimelineItem(experience) {
+    const timelineItem = createElement(
+      'div',
+      'timeline-item flex flex-col md:flex-row mb-8'
+    );
+    const timelineDot = createElement(
+      'div',
+      'timeline-dot flex items-center justify-center'
+    );
+    const timelineContent = createElement('div', 'timeline-content');
+    const title = createElement(
+      'h3',
+      'timeline-title text-xl font-semibold',
+      experience.title
+    );
+    const date = createElement('p', 'text-gray-600', experience.date);
+    const descriptionList = createList(
+      experience.description,
+      'list-disc list-inside'
+    );
+
+    appendChildren(timelineContent, title, date, descriptionList);
+    appendChildren(timelineItem, timelineDot, timelineContent);
+    return timelineItem;
+  }
+
+  function createSkillItem(skillCategory) {
+    const skillItem = createElement('div', 'mb-6');
+    const skillTitle = createElement(
+      'h3',
+      'text-xl font-semibold',
+      skillCategory.title
+    );
+    const skillDescription = createElement(
+      'p',
+      'text-gray-600',
+      skillCategory.description
+    );
+    appendChildren(skillItem, skillTitle, skillDescription);
+    return skillItem;
+  }
+
+  function createEducationItem(eduItem) {
+    const eduDiv = createElement('div', 'mb-6');
+    const eduLink = createLink(
+      eduItem.link,
+      'text-xl font-semibold',
+      `${eduItem.name} - ${eduItem.degree}`
+    );
+    const eduDescription = createElement(
+      'p',
+      'text-gray-600',
+      `${eduItem.field} | ${eduItem.date} | Aggregate Score: ${eduItem.score}`
+    );
+    appendChildren(eduDiv, eduLink, eduDescription);
+    return eduDiv;
+  }
+
+  function createCourseItem(courseCategory) {
+    const courseItem = createElement('div', 'mb-6');
+    const courseTitle = createElement(
+      'h3',
+      'text-xl font-semibold p-3',
+      courseCategory.title
+    );
+    const courseList = createList(
+      courseCategory.courses,
+      'list-disc list-inside'
+    );
+    appendChildren(courseItem, courseTitle, courseList);
+    return courseItem;
+  }
+
+  /*=============== COMPONENT GENERATORS ===============*/
+
+  function generateComponents(containerId, data, itemCreator) {
+    const container = document.getElementById(containerId);
+    data.forEach((item) => container.appendChild(itemCreator(item)));
+  }
+
+  function generateComponentsByClass(className, data, itemCreator) {
+    const container = document.querySelector(className);
+    if (!container) {
+      throw new Error(`Container not found: ${className}`);
     }
-  ];
-
-  // Sample data for experiences
-  const experiencesData = [
-    {
-      title: 'NimbleBox.ai - Software Engineer',
-      date: 'Feb 2023 - Aug 2023',
-      description: [
-        'Worked on Admin panel - creating new features',
-        'Implemented Redux and RTK Query functionalities',
-        'Collaborated with the frontend team for a smooth user experience',
-      ],
-    },
-    {
-      title: 'The Tan Man Gaadi - FullStack Development',
-      date: '16 Nov 2022 - 21 Jan 2023',
-      description: [
-        'Led the development of a full-stack application for vehicle management',
-        'Integrated payment gateways for online transactions',
-        'Implemented responsive UI for a seamless user experience',
-      ],
-    },
-    {
-      title: 'BlockC School - Blockchain Development',
-      date: 'Jan 2022 - May 2022',
-      description: [
-        'Contributed to blockchain development projects',
-        'Implemented smart contracts using Solidity and testing',
-        'Explored and tested decentralized finance solutions',
-      ],
-    },
-    // Add more experience data as needed
-  ];
-
-  // Sample data for skills
-  const skillsData = [
-    {
-      title: 'Programming',
-      description: 'Python • JavaScript • TypeScript • Java • Solidity',
-    },
-    { title: 'Framework', description: 'Next.js • React • Redux • Django' },
-    {
-      title: 'Web Technologies',
-      description: 'HTML • CSS • JavaScript • Tailwind',
-    },
-    { title: 'Database', description: 'SQL • MongoDB' },
-    { title: 'Others', description: 'Node.js • Hardhat • Shell Script' },
-    // Add more skills data as needed
-  ];
-
-  // Sample data for awards
-  const awardsData = ['SIH 2022'];
-
-  // Generate project cards
-  generateProjectsComponent(projectsData);
-
-  // Generate experience timeline
-  generateExperienceTimeline(experiencesData);
-
-  // Generate skills grid
-  generateSkillsGrid(skillsData);
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-  // Function to generate education section dynamically
-  function generateEducationSection(educationData) {
-    const educationContainer = document.querySelector('.education');
-
-    educationData.forEach((eduItem) => {
-      const eduDiv = document.createElement('div');
-      eduDiv.className = 'mb-6';
-
-      const eduLink = document.createElement('a');
-      eduLink.className = 'text-xl font-semibold';
-      eduLink.href = eduItem.link;
-      eduLink.target = '_blank';
-      eduLink.rel = 'noopener noreferrer';
-      eduLink.textContent = `${eduItem.name} - ${eduItem.degree}`;
-
-      const eduDescription = document.createElement('p');
-      eduDescription.className = 'text-gray-600';
-      eduDescription.textContent = `${eduItem.field} | ${eduItem.date} | Aggregate Score: ${eduItem.score}`;
-
-      eduDiv.appendChild(eduLink);
-      eduDiv.appendChild(eduDescription);
-
-      educationContainer.appendChild(eduDiv);
-    });
+    data.forEach((item) => container.appendChild(itemCreator(item)));
   }
 
-  // Function to generate links section dynamically
-  function generateLinksSection(linksData) {
-    const linksContainer = document.querySelector('.links');
+  /*=============== MAIN ===============*/
 
-    const linksDiv = document.createElement('div');
-    linksDiv.className =
-      'container flex flex-col md:flex-col m-6 mx-auto justify-between bg-red';
+  generateComponents('project-container', projectsData, createProjectCard);
+  generateComponents(
+    'experience-timeline',
+    experiencesData,
+    createTimelineItem
+  );
+  generateComponentsByClass('.grid', skillsData, createSkillItem);
+  generateComponentsByClass('.education', educationData, createEducationItem);
+  generateComponents('courses-container', courseworkData, createCourseItem);
 
-    const linksHeading = document.createElement('h2');
-    linksHeading.className = 'text-3xl font-bold mb-8';
-    linksHeading.textContent = 'Links';
+  /*=============== LIGHT DARK THEME ===============*/
+  const themeButton = document.getElementById('theme-button');
+  const lightTheme = 'light-theme';
+  const iconTheme = 'bx-sun';
 
-    linksDiv.appendChild(linksHeading);
+  const selectedTheme = localStorage.getItem('selected-theme');
+  const selectedIcon = localStorage.getItem('selected-icon');
 
-    linksData.forEach((linkItem) => {
-      const linkDiv = document.createElement('div');
-      linkDiv.className = 'mb-6';
+  const getCurrentTheme = () =>
+    document.body.classList.contains(lightTheme) ? 'dark' : 'light';
+  const getCurrentIcon = () =>
+    themeButton.classList.contains(iconTheme) ? 'bx bx-moon' : 'bx bx-sun';
 
-      const linkTitle = document.createElement('h3');
-      linkTitle.className = 'text-xl font-semibold';
-      linkTitle.textContent = linkItem.title;
-
-      const linkAnchor = document.createElement('a');
-      linkAnchor.href = linkItem.url;
-      linkAnchor.className = 'text-blue-600 hover:underline';
-      linkAnchor.target = '_blank';
-      linkAnchor.rel = 'noopener noreferrer';
-      linkAnchor.textContent = linkItem.url;
-
-      linkDiv.appendChild(linkTitle);
-      linkDiv.appendChild(linkAnchor);
-
-      linksDiv.appendChild(linkDiv);
-    });
-
-    linksContainer.appendChild(linksDiv);
+  if (selectedTheme) {
+    document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](
+      lightTheme
+    );
+    themeButton.classList[selectedIcon === 'bx bx-moon' ? 'add' : 'remove'](
+      iconTheme
+    );
   }
 
-  // Sample data for education
-  const educationData = [
-    {
-      name: 'RCET',
-      link: 'https://rcet.rungta.ac.in/',
-      degree: 'B.Tech in Information and Technology',
-      field: 'Software Engineering/ Data Science',
-      date: '2020-24',
-      score: '75%',
-    },
-    {
-      name: 'A.N College, Bihar, Patna',
-      degree: 'PCM',
-      field: 'Science & Math',
-      date: '2017-19',
-      score: '71%',
-    },
-    // Add more education data as needed
-  ];
-
-  // Sample data for links
-  const linksData = [
-    { title: 'Github', url: 'https://github.com/pathakvikash' },
-    {
-      title: 'LinkedIn',
-      url: 'https://www.linkedin.com/in/vikash-pathak-298a01183/',
-    },
-    { title: 'Leetcode', url: 'https://leetcode.com/pathakvikash821/' },
-    // Add more links data as needed
-  ];
-
-  // Generate education section
-  generateEducationSection(educationData);
-
-  // Generate links section
-  generateLinksSection(linksData);
+  themeButton.addEventListener('click', () => {
+    document.body.classList.toggle(lightTheme);
+    themeButton.classList.toggle(iconTheme);
+    localStorage.setItem('selected-theme', getCurrentTheme());
+    localStorage.setItem('selected-icon', getCurrentIcon());
+  });
 });
-document.addEventListener('DOMContentLoaded', function () {
-  // Function to generate coursework dynamically
-  function generateCoursework(courses) {
-    const coursesContainer = document.getElementById('courses-container');
 
-    courses.forEach((courseCategory) => {
-      const courseItem = document.createElement('div');
-      courseItem.className = 'mb-6';
+document.addEventListener('DOMContentLoaded', () => {
+  const blobContent = document.getElementById('blob-content');
+  const responseContainer = document.getElementById('response-container');
+  const question = document.getElementById('question');
+  const audioVisualizer = document.getElementById('audio-visualizer');
 
-      const courseTitle = document.createElement('h3');
-      courseTitle.className = 'text-xl font-semibold p-3';
-      courseTitle.textContent = courseCategory.title;
+  let isPlaying = false;
+  let responseBuffer = '';
+  let speechInProgress = false;
 
-      const courseList = document.createElement('ul');
-      courseList.className = 'list-disc list-inside';
+  function speak(text) {
+    const utterance = new SpeechSynthesisUtterance(
+      text.toLowerCase().replace(/[?!-]/g, '').replace(/,/, '...')
+    );
 
-      courseCategory.courses.forEach((course) => {
-        const listItem = document.createElement('li');
-        listItem.textContent = course;
-        courseList.appendChild(listItem);
+    const voices = window.speechSynthesis.getVoices();
+    const selectedVoice = voices.find(
+      (voice) => voice.lang === 'en-US' && voice.name.includes('Google')
+    );
+
+    if (selectedVoice) {
+      utterance.voice = selectedVoice;
+    }
+
+    utterance.lang = 'en-US';
+    utterance.pitch = 1.0;
+    utterance.rate = 1.05;
+    utterance.volume = 0.9;
+
+    utterance.onstart = () => {
+      isPlaying = true;
+      updateAudioVisualizer();
+    };
+    utterance.onend = () => {
+      isPlaying = false;
+      updateAudioVisualizer();
+      speechInProgress = false;
+    };
+
+    speechSynthesis.speak(utterance);
+  }
+
+  function updateAudioVisualizer() {
+    audioVisualizer.innerHTML = isPlaying
+      ? '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" fill="#4a4a4a"/></svg>'
+      : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-6h2v-4h-2v4z" fill="#4a4a4a"/></svg>';
+  }
+
+  blobContent.addEventListener('click', async () => {
+    try {
+      const response = await fetch('http://localhost:11434/api/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: 'phi3.5',
+          prompt: `${question.value}`,
+          system: `You are a helpful personal assistant of Vikash Pathak. About me: ${JSON.stringify(
+            AboutMe
+          )}. Answer the question as best as you can in 30 words or less.`,
+          temperature: 0.3,
+          max_tokens: 30,
+          stop: ['\n'],
+        }),
       });
+      question.value = '';
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
 
-      courseItem.appendChild(courseTitle);
-      courseItem.appendChild(courseList);
+      const reader = response.body?.getReader();
+      if (!reader) {
+        throw new Error('Failed to get reader from response');
+      }
 
-      coursesContainer.appendChild(courseItem);
-    });
-  }
+      const decoder = new TextDecoder('utf-8');
+      let serverResponse = '';
+      responseContainer.style.display = 'none';
+      audioVisualizer.style.display = 'block';
 
-  // Sample data for coursework
-  const courseworkData = [
-    {
-      title: 'COURSERA',
-      courses: [
-        'Introduction to Generative AI',
-        'Python for Data Science',
-        'Data Science Toolkit',
-      ],
-    },
-    {
-      title: 'UNDERGRADUATE',
-      courses: [
-        'Data Structures and Algorithms',
-        'Operating Systems',
-        'Database Management System',
-        'Software Design & Engineering',
-        'Object Oriented Programming',
-        'Linux Programming',
-      ],
-    },
-    {
-      title: 'MOOCS CERTIFICATION',
-      courses: [
-        'Data Science Methodology by IBM',
-        'Data Structure and Algorithm',
-      ],
-    },
-    // Add more coursework data as needed
-  ];
+      const processStream = async () => {
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
 
-  // Generate coursework
-  generateCoursework(courseworkData);
-});
+          const decodedValue = decoder.decode(value, { stream: true });
+          serverResponse += decodedValue;
 
-/*=============== LIGHT DARK THEME ===============*/
-const themeButton = document.getElementById('theme-button');
-const lightTheme = 'light-theme';
-const iconTheme = 'bx-sun';
+          try {
+            const chunks = serverResponse
+              .split('\n')
+              .filter((chunk) => chunk.trim() !== '');
+            const lastChunk = chunks[chunks.length - 1];
 
-const selectedTheme = localStorage.getItem('selected-theme');
-const selectedIcon = localStorage.getItem('selected-icon');
+            if (lastChunk) {
+              const data = JSON.parse(lastChunk);
+              if (data.response) {
+                responseBuffer += data.response;
 
-const getCurrentTheme = () =>
-  document.body.classList.contains(lightTheme) ? 'dark' : 'light';
-const getCurrentIcon = () =>
-  themeButton.classList.contains(iconTheme) ? 'bx bx-moon' : 'bx bx-sun';
+                if (responseBuffer.length > 50 && !speechInProgress) {
+                  speechInProgress = true;
+                  speak(responseBuffer);
+                  responseBuffer = '';
+                }
+              }
+            }
+          } catch (e) {
+            console.error('Error parsing chunk:', e);
+          }
+        }
 
-if (selectedTheme) {
-  document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](
-    lightTheme
-  );
-  themeButton.classList[selectedIcon === 'bx bx-moon' ? 'add' : 'remove'](
-    iconTheme
-  );
-}
+        if (responseBuffer.length > 0) {
+          speak(responseBuffer);
+        }
+      };
 
-themeButton.addEventListener('click', () => {
-  document.body.classList.toggle(lightTheme);
-  themeButton.classList.toggle(iconTheme);
-  localStorage.setItem('selected-theme', getCurrentTheme());
-  localStorage.setItem('selected-icon', getCurrentIcon());
+      processStream();
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  });
+
+  updateAudioVisualizer();
 });
