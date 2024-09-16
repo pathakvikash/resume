@@ -47,7 +47,7 @@ const projectsData = [
     image:
       'https://img.freepik.com/free-vector/gradient-blue-background_52683-83113.jpg?ga=GA1.1.1006113649.1726469951&semt=ais_hybrid',
     description: 'Developed a clone of Netflix.',
-    link: 'https://netflix-rouge-xi.vercel.app',
+    link: 'https://netflix-pathakvikashs-projects.vercel.app/',
     gitrepo: 'https://github.com/pathakvikash/netflix',
   },
   {
