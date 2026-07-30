@@ -3,344 +3,173 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/kute.js@2.1.2/dist/kute.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@100;400;900&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vikash Pathak — AI / ML Engineer</title>
+    <meta name="description"
+        content="Vikash Pathak — AI engineer building LLM applications, RAG pipelines and agents in Python.">
 
-    <title>Vikash Pathak - Portfolio</title>
-    <!--=============== BOXICONS ===============-->
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-
+    <!-- The Broadsheet token sheet, its components and this page's layout -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- The ground is decided before first paint, so a dark page never flashes light. -->
+    <script>
+        (() => {
+            const stored = localStorage.getItem('selected-theme');
+            const preferred = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.dataset.theme = stored || preferred;
+        })();
+    </script>
 </head>
 
 <body>
-    <div class="absolute top-4 left-4 z-10">
-        <a href="#about-me" class="btn w-min connect-btn btn-primary">Connect</a>
-    </div>
-    <section class="relative h-screen layer1 spacer w-full items-center justify-center flex flex-col gap-4 text-white">
-        <div class="flex flex-col items-center w-screen gap-6">
-            <div id="auto-typing-animation" class="text-center home-text h-9 p-3 ">
-                <p class="text-5xl font-bold typed-text cursor mb-8">
-                    Hi,
-                    👋 Vikash Pathak
-                </p>
-                <a href="#about" class="text-xl flex justify-end text-gray-400 m-2 gap-1">I build things. </a>
+    <nav class="site-nav">
+        <span class="nav-brand">Vikash Pathak</span>
+        <div class="site-nav-links" id="nav-links"></div>
+        <button class="btn btn-secondary btn-icon theme-toggle" id="theme-button" type="button"
+            aria-pressed="false"></button>
+        <a class="btn btn-secondary" href="uploads/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+    </nav>
+
+    <!-- The deck: one panel to a screen, each taking the place of the last.
+         Panels for the repeated items — the three systems, the four roles —
+         are built by script.js so the running order lives in data.js. -->
+    <main class="deck" id="deck">
+
+        <section class="panel panel-masthead" data-nav="top" id="top">
+            <div class="wrap">
+                <h1 class="masthead-title" id="masthead-title"></h1>
+                <p class="lede" id="masthead-lede"></p>
+                <div class="btn-row">
+                    <a class="btn btn-primary" id="masthead-mail" href="#contact">Get in touch</a>
+                    <a class="btn btn-secondary" href="https://github.com/pathakvikash" target="_blank"
+                        rel="noopener">GitHub</a>
+                    <a class="btn btn-secondary" href="https://www.linkedin.com/in/vikash-pathak-298a01183/"
+                        target="_blank" rel="noopener">LinkedIn</a>
+                </div>
             </div>
-        </div>
-    </section>
+            <p class="scroll-cue" id="scroll-cue" aria-hidden="true">Scroll</p>
+        </section>
 
-    <div class="absolute top-4 right-4">
-        <i class='bx bx-moon change-theme change-theme-button' id="theme-button"></i>
-    </div>
-
-    <div class="social-menu ">
-        <a href="https://www.linkedin.com/in/vikash-pathak-298a01183/" target="_blank" class="linkedin">
-            <i class='bx bxl-linkedin'></i>
-        </a>
-        <a href="https://github.com/pathakvikash" target="_blank" class="github">
-            <i class='bx bxl-github'></i>
-        </a>
-        <a href="https://leetcode.com/pathakvikash821/" target="_blank" class="leetcode">
-            <i class='bx bxl-ok-ru'></i>
-            <img src="https://icons8.com/icon/fiCYSJOnXi7E/level-up-your-coding-skills-and-quickly-land-a-job" alt="" />
-        </a>
-    </div>
-
-    <section class="container text-white mx-auto my-12 px-8">
-
-        <div class="comp-card flex flex-col md:flex-row justify-between">
-            <div class="education  my-auto">
-                <h2 class="text-3xl font-bold mb-9 ">Education</h2>
+        <!-- Front-page furniture: the thick-thin head pair around the dateline rail -->
+        <section class="panel" data-nav="top">
+            <div class="wrap front-matter">
+                <hr class="rule-thick-thin">
+                <div class="dateline" id="dateline"></div>
+                <hr class="rule-thin">
+                <div class="contents" id="contents"></div>
             </div>
+        </section>
 
-            <div class="lang-loco w-80 my-auto flex flex-col gap-6">
-                <hr class="w-full h-px bg-gray-200 border-0 dark:bg-gray-700 ">
-                <div class="row">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <div class="info">
-                        <div class="head text-xl font-bold"> Address</div>
-                        <div class="sub-title"> Patna - Bihar, 800002, India</div>
+        <section class="panel" data-nav="about" id="about">
+            <div class="wrap">
+                <span class="kicker" data-section="about" data-reveal></span>
+                <div class="section-about">
+                    <figure class="cmyk portrait" data-reveal>
+                        <img src="uploads/photo.png" alt="Vikash Pathak">
+                        <img class="sep-c" src="uploads/photo.png" alt="" aria-hidden="true">
+                        <img class="sep-m" src="uploads/photo.png" alt="" aria-hidden="true">
+                        <img class="sep-y" src="uploads/photo.png" alt="" aria-hidden="true">
+                        <img class="sep-k" src="uploads/photo.png" alt="" aria-hidden="true">
+                    </figure>
+                    <div data-reveal>
+                        <h2 class="section-title" id="about-heading"></h2>
+                        <div id="about-body"></div>
                     </div>
                 </div>
-                <div class="row">
-                    <i class="bi bi-translate"></i>
-                    <div class="info">
-                        <div class="head text-xl font-bold">Language</div>
-                        <div class="sub-title">Hindi, English</div>
+            </div>
+        </section>
+
+        <!-- one panel per system, then the shipped index -->
+        <div id="work-panels"></div>
+
+        <!-- one panel per role, the rail running from panel to panel -->
+        <div id="experience-panels"></div>
+
+        <section class="panel" data-nav="stack" id="stack">
+            <div class="wrap">
+                <span class="kicker" data-section="stack" data-reveal></span>
+                <h2 class="section-title section-title-lead" data-reveal>What I reach for.</h2>
+                <div class="stack-grid" id="stack-container"></div>
+            </div>
+        </section>
+
+        <section class="panel" data-nav="notes" id="notes">
+            <div class="wrap">
+                <span class="kicker" data-section="notes" data-reveal></span>
+                <h2 class="section-title section-title-lead" data-reveal>Things I keep having to explain.</h2>
+                <div class="notes-grid" id="notes-container"></div>
+            </div>
+        </section>
+
+        <section class="panel" data-nav="credentials" id="credentials">
+            <div class="wrap">
+                <span class="kicker" data-section="credentials" data-reveal></span>
+                <h2 class="section-title section-title-lead" data-reveal>Where the groundwork came from.</h2>
+                <div class="credentials">
+                    <div data-reveal>
+                        <h4 class="subhead">Education</h4>
+                        <div id="education-container"></div>
+                    </div>
+                    <div data-reveal>
+                        <h4 class="subhead">Certifications</h4>
+                        <div id="certifications-container"></div>
+                    </div>
+                    <div data-reveal>
+                        <h4 class="subhead">Coursework &amp; activities</h4>
+                        <div id="courses-container"></div>
                     </div>
                 </div>
-                <hr class="w-full h-px bg-gray-200 border-0 dark:bg-gray-700 ">
             </div>
+        </section>
 
-        </div>
-    </section>
-
-    <section id="about-me" class="py-16 bg-gray-200">
-        <div class="container mx-auto px-4 sm:px-8">
-            <h2 class="text-3xl font-bold text-gray-800 mb-4">
-                About Me
-                <input id="question" type="text" placeholder="Ask something">
-            </h2>
-            <p class="text-2xl text-gray-600 mb-8">
-                Hi, I'm Vikash—a passionate software engineer with over 2 years of experience in full-stack development.
-                I specialize in
-                creating efficient, user-friendly applications using JavaScript, Node.js, TypeScript, Solidity, and
-                Next.js. My focus is
-                on delivering scalable, impactful solutions that blend performance with sleek UI/UX design.
-            </p>
-            <section class="about py-16" id="about">
-                <div class="container mx-auto">
-                    <div class="about-content flex flex-col md:flex-row">
-                        <div class="column left w-full md:w-1/2">
-                            <img src="https://ca.slack-edge.com/T044JMLKQ4V-U04R4QMRVA5-cfd6e4624667-512"
-                                alt="Profile Image 626x626" class="w-1/2 block sm:hidden">
-                            <div id="blob-content" class="blob-content sm:block hidden xl:block">
-                                <div id="audio-visualizer"></div>
-
-                                <svg class="blob-motion" id="visual" viewBox="30 60 960 540" width="360" height="540"
-                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    version="1.1">
-                                    <g transform="translate(450.7256843113689 283.4942824330989)">
-                                        <path id="blob1"
-                                            d="M148.7 -134.9C193.7 -103.7 231.9 -51.9 232.4 0.6C233 53 196.1 106.1 151.1 128.6C106.1 151.1 53 143 -4.4 147.4C-61.8 151.8 -123.5 168.5 -151.2 146C-178.8 123.5 -172.4 61.8 -172.8 -0.4C-173.1 -62.5 -180.3 -124.9 -152.6 -156.1C-124.9 -187.3 -62.5 -187.1 -5.3 -181.8C51.9 -176.5 103.7 -166 148.7 -134.9"
-                                            fill="#171515"></path>
-                                    </g>
-                                    <g transform="translate(509.54377535978017 281.49390864595887)"
-                                        style="visibility: hidden">
-                                        <path id="blob2"
-                                            d="M115.4 -137.9C137.9 -92.9 136.4 -46.4 133.6 -2.8C130.8 40.8 126.6 81.6 104.1 118.4C81.6 155.2 40.8 188.1 -8.4 196.5C-57.5 204.8 -115 188.7 -151 151.9C-187 115 -201.5 57.5 -190.8 10.7C-180.1 -36.1 -144.1 -72.1 -108.1 -117.1C-72.1 -162.1 -36.1 -216.1 5.2 -221.2C46.4 -226.4 92.9 -182.9 115.4 -137.9"
-                                            fill="#BB004B"></path>
-                                    </g>
-                                </svg>
-                                <div id="response-container">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="column right w-full md:w-1/2 mt-8 md:mt-0 gap-4">
-                            <div class="text text-xl">Let's Talk
-                            </div>
-
-                            <p class="mt-4 ">I'm always eager to dive into new challenges. If you have a problem to
-                                solve or an idea to bring to life, let's connect!
-                            </p>
-                            <br>
-                            <div class="text text-xl">Why Choose Me?</div>
-                            <p class="mt-4 mb-4">I'm not just a developer—I'm a problem-solver. With a deep
-                                understanding of modern web technologies and a collaborative
-                                approach, I invest the time to truly grasp the core of your needs and deliver results
-                                that exceed expectations.
-                            </p>
-                            <a href="./compo/VP.pdf" target="blank" download="Vikash Pathak - VP resume"
-                                class="text-blue-500 text-xl">Download
-                                CV</a>
-                        </div>
-                    </div>
+        <section class="panel panel-contact" data-nav="contact" id="contact">
+            <div class="wrap">
+                <span class="kicker" data-section="contact" data-reveal></span>
+                <hr class="rule-thick-thin">
+                <div class="colophon-call" data-reveal>
+                    <h2 class="call-title">Hiring for an AI engineer? Let's talk.</h2>
+                    <p class="lede">Happiest on teams shipping LLM features to real users, where evaluation and
+                        reliability matter as much as the demo. Remote or relocating.</p>
+                    <div class="btn-row" id="contact-actions"></div>
                 </div>
-
-            </section>
-            <div class="flex flex-wrap justify-between">
-                <section class="container mx-auto my-6">
-                    <h2 class="text-3xl font-bold mb-8">Skills</h2>
-
-                    <!-- Skills Grid -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
-                        <!-- Skills items will be dynamically generated here -->
-                    </div>
-                </section>
-
-
-
+                <hr class="rule-thin">
+                <p class="colophon" id="colophon"></p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="experience" class="bg-white py-16">
-        <div class="container mx-auto px-4 sm:px-8 flex flex-col md:flex-row justify-between">
-            <div>
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">
-                    Experience
-                </h2>
-                <div id="experience-timeline" class="timeline">
-                    <!-- Experience items will be dynamically generated here -->
-                </div>
-            </div>
+    </main>
 
-            <div class=" w-80">
-                <h1 class="text-3xl font-bold mb-9">Interests</h1>
-                <div class="bar security" data-skill="SECURITY"></div>
-                <div class="bar webdev" data-skill="WEBDEV"></div>
-                <div class="bar blockchain" data-skill="BLOCKCHAIN"></div>
-                <div class="bar web3" data-skill="WEB3"></div>
-                <div class="bar ai" data-skill="AI"></div>
-                <div class="bar finance" data-skill="FINANCE"></div>
-            </div>
-        </div>
-    </section>
+    <!-- The folio, as on a printed sheet: which leaf you are on, of how many -->
+    <p class="leaf-folio" id="folio" aria-hidden="true"></p>
 
-    <section id="projects" class="bg-gray-100 py-16">
-        <div class="container mx-auto px-4 sm:px-8 flex flex-col justify-between">
-            <h2 class="text-3xl mb-8 font-bold text-gray-800 mb-4">
-                Projects
-            </h2>
-            <div id="project-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- Project cards will be dynamically generated here -->
-            </div>
-        </div>
-    </section>
+    <!-- The separation filters the .cmyk portrait prints with: one process plate
+         per filter, extracted from the photograph and laid down as that ink —
+         cyan from R, magenta from G, yellow from B, and a 60%-strength
+         luminance black in the text ink. They have to sit in the document
+         itself; a filter referenced from an external file or a data URI does
+         not resolve reliably across engines. -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+        <defs>
+            <filter id="sep-c" color-interpolation-filters="sRGB">
+                <feColorMatrix type="matrix"
+                    values="1 0 0 0 0  0.467 0 0 0 0.533  0.310 0 0 0 0.690  0 0 0 0 1" />
+            </filter>
+            <filter id="sep-m" color-interpolation-filters="sRGB">
+                <feColorMatrix type="matrix"
+                    values="0 0.161 0 0 0.839  0 1 0 0 0  0 0.576 0 0 0.424  0 0 0 0 1" />
+            </filter>
+            <filter id="sep-y" color-interpolation-filters="sRGB">
+                <feColorMatrix type="matrix"
+                    values="0 0 0.071 0 0.929  0 0 0.267 0 0.733  0 0 1 0 0  0 0 0 0 1" />
+            </filter>
+            <filter id="sep-k" color-interpolation-filters="sRGB">
+                <feColorMatrix type="matrix"
+                    values="0.112 0.375 0.038 0 0.475  0.113 0.379 0.038 0 0.471  0.113 0.380 0.038 0 0.468  0 0 0 0 1" />
+            </filter>
+        </defs>
+    </svg>
 
-    <section id="activity" class="bg-white py-16 mx-auto">
-        <div class="container mx-auto px-4 sm:px-8 flex flex-col justify-between">
-            <h2 class="text-3xl font-bold mb-8">Activities</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Example activity -->
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <p class="text-gray-600">"Participated in SIH Hackathon - 2022"</p>
-                    <p class="text-gray-800 font-semibold mt-4">Team Leader</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <p class="text-gray-600">"Tezos Club - 2023"</p>
-                    <p class="text-gray-800 font-semibold mt-4">
-                        <a href="https://www.instagram.com/enigma.tezos.club/" target="_blank">
-                            Tech-lead
-                        </a>
-                    </p>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="courses" class="bg-gray-100 py-16 mx-auto ">
-        <div class="container mx-auto px-4 sm:px-8 flex flex-col justify-between">
-
-            <div class="container mx-auto">
-                <h2 class="text-3xl font-bold mb-8">Coursework</h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 px-4 lg:grid-cols-3 gap-8" id="courses-container">
-                    <!-- Content will be dynamically generated here -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <section id="contact" class="layer2 spacer text-white py-16">
-        <div class="container mx-auto px-4 sm:px-8">
-            <a href="/components/contact.html" class="text-3xl font-bold  mb-4">
-                Contact Me
-            </a>
-            <div class="contact-content flex flex-col md:flex-row">
-                <div class="column left w-full md:w-1/2 h-min">
-                    <p class="mt-9 text-lg px-3 ">I'm open to discussing new projects, creative ideas, or opportunities.
-                        Feel free to email me with any questions or to
-                        set up a meeting. I’d be happy to chat!</p>
-                    <div class="icons mt-4 px-3 flex flex-col gap-4">
-                        <div class="row">
-                            <i class="fa-solid fa-user-large"></i>
-                            <div class="info">
-                                <div class="head text-xl font-bold">Name</div>
-                                <div class="sub-title"><a href="#" class="text"> Vikash Pathak</a></div>
-                            </div>
-                        </div>
-                        <div class="contact__container container grid">
-                            <div class="contact__content">
-                                <h3 class="contact__title contact__title-info">Talk to me</h3>
-
-                                <div class="contact__info">
-                                    <div class="contact__card">
-                                        <i class='bx bx-mail-send contact__card-icon'></i>
-                                        <h3 class="contact__card-title">Email</h3>
-                                        <span class="contact__card-data">pathakvikash821@gmail.com</span>
-
-                                        <a href="mailto:pathakvikash821@gmail.com" target="_blank"
-                                            class="contact__button">
-                                            Write Me <i class='bx bx-right-arrow contact__button-icon'></i>
-                                        </a>
-                                    </div>
-
-                                    <div class="contact__card">
-                                        <i class='bx bxl-whatsapp contact__card-icon'></i>
-                                        <h3 class="contact__card-title">Whatsapp</h3>
-                                        <span class="contact__card-data">+918210504367</span>
-
-                                        <a href="https://api.whatsapp.com/send?phone=+918210504367&text=Hey there!"
-                                            target="_blank" class="contact__button">
-                                            Write Me <i class='bx bx-right-arrow contact__button-icon'></i>
-                                        </a>
-                                    </div>
-
-                                    <div class="contact__card">
-                                        <i class='bx bxl-linkedin contact__card-icon'></i>
-                                        <h3 class="contact__card-title">Linkedin</h3>
-                                        <span class="contact__card-data">Vikash Pathak</span>
-
-                                        <a href="https://linkedin.com/in/vikash-pathak-298a01183" target="_blank"
-                                            class="contact__button">
-                                            Write Me <i class='bx bx-right-arrow contact__button-icon'></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-
-                        </div>
-                        <br>
-                    </div>
-                </div>
-
-                <!-- Reach -->
-                <div class="column right w-full md:w-1/2 mt-8 md:mt-0">
-                    <div class="text text-xl">Message me</div>
-                    <form action="#" class="mt-4 text-black ">
-                        <div class="fields">
-                            <div class="field name">
-                                <input type="text" placeholder="Your Name" required
-                                    class="w-full inputbg border border-gray-400 p-2 rounded">
-                            </div>
-                            <div class="field email mt-4">
-                                <input type="email" placeholder="Your Email" required
-                                    class="w-full inputbg border border-gray-400 p-2 rounded">
-                            </div>
-                        </div>
-                        <div class="field mt-4">
-                            <input type="text" placeholder="Subject" required
-                                class="w-full inputbg inputbg border border-gray-400 p-2 rounded">
-                        </div>
-                        <div class="field textarea mt-4">
-                            <textarea cols="30" rows="10" placeholder="Message.." required
-                                class="w-full blobs spacer border border-gray-400 p-2 rounded"></textarea>
-                        </div>
-                        <div class="button-area mt-4">
-                            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Send message</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class=" bg-gray-800 text-white py-4 border-t border-gray-700">
-        <div class="container mx-auto px-4 sm:px-8">
-            <p class="text-center">
-                © 2024 Vikash Pathak. All rights reserved.
-            </p>
-        </div>
-    </footer>
+    <script src="script.js" type="module"></script>
 </body>
-
-<script src="script.js" type="module"></script>
-<script src="animation.js"></script>
-<script>
-    const tween = KUTE.fromTo(
-        '#blob1',
-        { path: '#blob1' },
-        { path: '#blob2' },
-        { repeat: 999, duration: 3000, yoyo: true }
-    ).start();
-</script>
 
 </html>
